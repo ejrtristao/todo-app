@@ -47,7 +47,6 @@ class StoreTodoRequest extends FormRequest
             'description.required' => 'A Descrição é obrigatória',
             'description.min' => 'A Descrição deve ter no mínimo 3 caracteres',
             'description.max' => 'A Descrição não pode ter ser maior que 255 caracteres',
-            'user_id.required' => 'User ID é obrigatório',
         ];
     }
 
@@ -61,7 +60,6 @@ class StoreTodoRequest extends FormRequest
         return [
             'todo' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'user_id' => 'required|integer'
         ];
     }
 }
