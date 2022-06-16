@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTodoRequest;
+use App\Mail\TodoMailUser;
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class TodoController extends Controller
 {
@@ -27,6 +30,7 @@ class TodoController extends Controller
     public function store(StoreTodoRequest $request)
     {
         $todo = Todo::create($request->all());
+        Mail::to(Auth::user()->email)->send(new TodoMailUser($todo));
         return response()->json($todo, 201);
     }
 
