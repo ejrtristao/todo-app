@@ -19,7 +19,7 @@ class TodoFactory extends Factory
     {
         return [
             'todo' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->sentence(5),
             'status' =>$this->faker->randomElement(['pending','completed']),
             'user_id' => User::inRandomOrder()->first()
         ];
