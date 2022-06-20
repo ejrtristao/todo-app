@@ -30,6 +30,15 @@ const getTodos = async () => {
     todos.value = response.data;
 };
 
+const listCompleted = async () => {
+    const response = await axios.get("/api/todos/list/completed", {
+        headers: {
+            Authorization: `Bearer ${cookies.get("token") }`
+        }
+    });
+    todos.value = response.data;
+};
+
 const completedTodo = async (id) => {
     const response = await axios
         .put("/api/todos/completed/" + id, {
@@ -81,12 +90,27 @@ const deleteTodo = async (id) => {
                 <div class="row">
                     <div class="col-auto me-auto">
                         <h1>Tarefas</h1>
-                        <button
-                            class="btn btn-sm btn-primary float-right"
-                            @click="createTodo"
-                        >
-                            Nova Tarefa
-                        </button>
+                        <div class="btn-group">
+                            <button
+                                class="btn btn-sm btn-primary"
+                                @click="createTodo"
+                            >
+                                Nova Tarefa
+                            </button>
+            
+                            <button
+                                class="btn btn-sm btn-success"
+                                @click="listCompleted"
+                            >
+                                Tarefas Completadas
+                            </button>
+                            <button
+                                class="btn btn-sm btn-danger"
+                                @click="getTodos"
+                            >
+                                Tarefas em aberto
+                            </button>
+                        </div>
                     </div>
                     <div class="col-auto">
                         <button
@@ -103,17 +127,13 @@ const deleteTodo = async (id) => {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Tarefa</th>
-                            <th>Status</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="todo in todos" :key="todo.id">
-                            <td>{{ todo.id }}</td>
                             <td>{{ todo.todo }}</td>
-                            <td>{{ todo.status }}</td>
                             <td>
                                 <div
                                     class="btn-group"
@@ -150,7 +170,11 @@ const deleteTodo = async (id) => {
         <div class="row" v-else>
             <div class="col-md-12">
                 <h1>Acesso</h1>
-                <button @click="login">Login</button>
+                <div class="btn-group">
+                    <button class="btn btn-primary" @click="login">
+                        Login
+                    </button>
+                </div>
             </div>
         </div>
     </div>

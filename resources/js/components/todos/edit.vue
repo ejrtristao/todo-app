@@ -1,53 +1,51 @@
 <script setup>
-import {onMounted, ref} from 'vue';
-import {useRouter} from 'vue-router';
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 let form = ref({
-    todo: '',
-    description: '',
-    user_id: '',
-})
+    todo: "",
+    description: "",
+    user_id: "",
+});
 
-onMounted(async() => {
+onMounted(async () => {
     getTodo();
 });
 
 const props = defineProps({
     id: {
         type: String,
-        default: '',
+        default: "",
     },
-})
+});
 
 const router = useRouter();
 
-const getTodo = async() => {
+const getTodo = async () => {
     const response = await axios.get(`/api/todos/${props.id}`);
     form.value = response.data;
 };
 
 const updateTodo = () => {
-
     const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }
+        "Content-Type": "application/x-www-form-urlencoded",
+    };
 
     const formData = new FormData();
-    formData.append('todo', form.value.todo);
-    formData.append('description', form.value.description);
-    formData.append('user_id', form.value.user_id);
-    formData.append('_method', 'PUT');
+    formData.append("todo", form.value.todo);
+    formData.append("description", form.value.description);
+    formData.append("user_id", form.value.user_id);
+    formData.append("_method", "PUT");
 
-   axios.post(`/api/todos/${props.id}`, formData, headers)
+    axios
+        .post(`/api/todos/${props.id}`, formData, headers)
         .then((response) => {
-            router.push('/');
+            router.push("/");
         })
         .catch((error) => {
             console.log(error);
         });
-
-}
-
+};
 </script>
 
 <template>
@@ -59,18 +57,11 @@ const updateTodo = () => {
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="todo">Tarefa</label>
-                    <input
+                    <input'
                         type="text"
                         class="form-control"
                         id="todo"
                         v-model="form.todo"
-                    />
-                    <label for="user_id">User</label>
-                    <input
-                        type="number"
-                        class="form-control"
-                        id="user_id"
-                        v-model="form.user_id"
                     />
                     <label for="description">Descrição</label>
                     <input
@@ -80,9 +71,12 @@ const updateTodo = () => {
                         v-model="form.description"
                     />
                 </div>
-                <button @click="updateTodo()" class="btn btn-primary">
-                    Atualizar
-                </button>
+
+                <div class="btn-group">
+                    <button @click="updateTodo()" class="btn btn-primary">
+                        Atualizar
+                    </button>
+                </div>
             </div>
         </div>
     </div>

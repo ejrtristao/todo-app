@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth:api'], function () { 
     Route::apiResource('todos', TodoController::class);
     Route::put('todos/completed/{todo}', [TodoController::class, 'completed']);
+    Route::get('todos/list/completed', [TodoController::class, 'listCompleted']);
 });
 
 Route::controller(AuthController::class)->group(function () {

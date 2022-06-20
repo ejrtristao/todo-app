@@ -19,7 +19,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return Todo::all();
+        return Todo::where('user_id', Auth::user()->id)->where('status', 'pending')->get();
     }
 
     /**
@@ -73,5 +73,10 @@ class TodoController extends Controller
         $todo->status = "completed";
         $todo->save();
         return response()->json($todo, 200);
+    }
+
+    public function listCompleted()
+    {
+        return Todo::where('user_id', Auth::user()->id)->where('status', 'completed')->get();
     }
 }
