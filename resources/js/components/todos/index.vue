@@ -31,6 +31,10 @@ const createTodo = () => {
     router.push('/todos/create');
 };
 
+const editTodo = (id) => {
+    router.push('/todos/edit/'+id);
+};
+
 </script>
 
 <template>
