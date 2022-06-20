@@ -1,7 +1,6 @@
 # Sistema de Tarefas
 
 veja como instalar: [https://youtu.be/foL8Cf1px_I]
-[![IMAGE ALT TEXT]](https://youtu.be/foL8Cf1px_I "Instalando o sistema de Cadastro de tarefas")
 
 veja como usá-lo: [https://youtu.be/SA7BeypmasA]
 
