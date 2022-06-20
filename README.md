@@ -1,64 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Sistema de Tarefas
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Objetivo do sistema:
 
-## About Laravel
+Sistema desenvolvido para registrar tarefas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A cada tarefa criada, será enviado um e-mail para o usuário da tarefa
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+As tarefas de status de pendente e completadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Tarefas completadas não podem ser excluídas nem editadas
 
-## Learning Laravel
+## Pré-requisitos:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+php 8.1
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+node 12
 
-## Laravel Sponsors
+## Passo a Passo para instalação:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1 - clonamos o repositório:
 
-### Premium Partners
+    git clone git@github.com:ejrtristao/todo-app.git todos-app
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+2 - Acessar o repositório criado
 
-## Contributing
+    cd todos-app
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3 - Instalar as dependencias do frameword Laravel:
 
-## Code of Conduct
+    ´composer update´
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4 - Instalar as dependências do Vue:
 
-## Security Vulnerabilities
+    ´npm install´
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5 - Configurar o banco de dados
 
-## License
+    ´cp .env.example .env´
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ´´´
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=todo_app
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ´´´
+
+6 - Configurar o e-mail
+
+    ´´´
+    MAIL_MAILER=smtp
+    MAIL_HOST=
+    MAIL_PORT=2525
+    MAIL_USERNAME=
+    MAIL_PASSWORD=
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS=
+    MAIL_FROM_NAME="${APP_NAME}"
+    ´´´
+
+7 - Gerar token do laravel
+
+    ´php artisan key:generate´
+
+8 - Gerar token jwt
+
+    ´php artisan jwt:secret´
+
+9 - Gerar migração do banco de dados
+
+    ´php artisan migrate´
+
+10 - Cadastrar o usuário
+
+    ´php artisan dev:first-access´
+
+11 - Gerar o script
+
+    ´npm run dev´
+
+12 - Carregar servidor
+
+    ´php artisan serve´
+
+## Utilizando o sistema:
+
+### Cadastrando tarefas
+
+1 - Faça login com seus dados
+
+2 - acesse o botão [Nova Tarefa]
+
+3 - Preencha os campos:
+
+    [Tarefa] = Nome da Tarefa
+    [Descrição] = Descrição detalhada da Tarefa
+    Clique em
+    [Salvar]
+
+4 - Após cadastrar a tarefa, a mesma será exibida na página principal
+
+5 - Será enviado um e-mail para o usuário da tarefa criada.
+
+### Editando tarefas
+
+1 - Na página principal, clique no botão editar da tarefa que deseja editar
+
+2 - Na página de edição, insira os dados que deseja editar.
+
+3 - salve o cadastro, os dados da tarefa atualizada irão aparecer na tela principal.
+
+### Concluindo tarefa
+
+1 - Na página principal, clique no botão [completar] da tarefa que deseja concluir
+
+2 - A tarefa concluída não será mais listada na página principal
+
+### Exibindo tarefas concluídas
+
+1 - na página principal clique em [Tarefas Completadas]
+
+2 - será carregada uma página com as tarefas completadas.
+
+### Excluíndo tarefas
+
+1 - Na página principal, clique no botão Excluir da tarefa que deseja apagar
+
+2 - A tarefa será excluída da tela principal.
