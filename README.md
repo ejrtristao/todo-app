@@ -2,8 +2,11 @@
 ## Objetivo do sistema:
 
 Sistema desenvolvido para registrar tarefas.
+
 A cada tarefa criada, será enviado um e-mail para o usuário da tarefa
+
 As tarefas de status de pendente e completadas
+
 Tarefas completadas não podem ser excluídas nem editadas
 
 ## Pré-requisitos:
@@ -25,6 +28,7 @@ node 12
 
 5 - Configurar o banco de dados
 	´cp .env.example .env´
+
 	´´´
 	DB_CONNECTION=mysql
 	DB_HOST=127.0.0.1
