@@ -28,28 +28,29 @@ node 12
 
 3 - Instalar as dependencias do frameword Laravel:
 
-    ´composer update´
+    composer update
 
 4 - Instalar as dependências do Vue:
 
-    ´npm install´
+    npm install
 
-5 - Configurar o banco de dados
+5 - Copie o arquivo .env.example para .env
 
-    ´cp .env.example .env´
+    cp .env.example .env
 
-    ´´´
+5b - em .env edite  os dados do banco de dados
+
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
     DB_DATABASE=todo_app
     DB_USERNAME=root
     DB_PASSWORD=
-    ´´´
 
-6 - Configurar o e-mail
 
-    ´´´
+6 - em .env edite configurar o e-mail
+
+    
     MAIL_MAILER=smtp
     MAIL_HOST=
     MAIL_PORT=2525
@@ -58,31 +59,31 @@ node 12
     MAIL_ENCRYPTION=tls
     MAIL_FROM_ADDRESS=
     MAIL_FROM_NAME="${APP_NAME}"
-    ´´´
+    
 
 7 - Gerar token do laravel
 
-    ´php artisan key:generate´
+    php artisan key:generate´
 
 8 - Gerar token jwt
 
-    ´php artisan jwt:secret´
+    php artisan jwt:secret
 
 9 - Gerar migração do banco de dados
 
-    ´php artisan migrate´
+    php artisan migrate
 
 10 - Cadastrar o usuário
 
-    ´php artisan dev:first-access´
+    php artisan dev:first-access
 
 11 - Gerar o script
 
-    ´npm run dev´
+    npm run dev
 
 12 - Carregar servidor
 
-    ´php artisan serve´
+    php artisan serve
 
 ## Utilizando o sistema:
 
