@@ -1,5 +1,8 @@
 # Sistema de Tarefas
 
+veja como instalar: [https://youtu.be/foL8Cf1px_I]
+veja como usá-lo: [https://youtu.be/SA7BeypmasA]
+
 ## Objetivo do sistema:
 
 Sistema desenvolvido para registrar tarefas.
@@ -63,7 +66,7 @@ node 12
 
 7 - Gerar token do laravel
 
-    php artisan key:generate´
+    php artisan key:generate
 
 8 - Gerar token jwt
 
