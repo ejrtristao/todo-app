@@ -1,4 +1,5 @@
 # Sistema de Tarefas
+
 ## Objetivo do sistema:
 
 Sistema desenvolvido para registrar tarefas.
@@ -19,69 +20,70 @@ node 12
 
 1 - clonamos o repositório:
 
-	´git clone git@github.com:ejrtristao/todo-app.git todos-app´
+    git clone git@github.com:ejrtristao/todo-app.git todos-app
 
 2 - Acessar o repositório criado
 
-	´cd todos-app´
+    cd todos-app
+
 3 - Instalar as dependencias do frameword Laravel:
 
-	´composer update´
-	
+    ´composer update´
+
 4 - Instalar as dependências do Vue:
 
-	´npm install´
+    ´npm install´
 
 5 - Configurar o banco de dados
 
-	´cp .env.example .env´
+    ´cp .env.example .env´
 
-	´´´
-	DB_CONNECTION=mysql
-	DB_HOST=127.0.0.1
-	DB_PORT=3306
-	DB_DATABASE=todo_app
-	DB_USERNAME=root
-	DB_PASSWORD=
-	´´´
-	
+    ´´´
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=todo_app
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ´´´
+
 6 - Configurar o e-mail
 
-	´´´
-	MAIL_MAILER=smtp
-	MAIL_HOST=
-	MAIL_PORT=2525
-	MAIL_USERNAME=
-	MAIL_PASSWORD=
-	MAIL_ENCRYPTION=tls
-	MAIL_FROM_ADDRESS=
-	MAIL_FROM_NAME="${APP_NAME}"
-	´´´
-	
+    ´´´
+    MAIL_MAILER=smtp
+    MAIL_HOST=
+    MAIL_PORT=2525
+    MAIL_USERNAME=
+    MAIL_PASSWORD=
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS=
+    MAIL_FROM_NAME="${APP_NAME}"
+    ´´´
+
 7 - Gerar token do laravel
 
-	´php artisan key:generate´
+    ´php artisan key:generate´
 
 8 - Gerar token jwt
 
-	´php artisan jwt:secret´
+    ´php artisan jwt:secret´
 
 9 - Gerar migração do banco de dados
 
-	´php artisan migrate´
-	
+    ´php artisan migrate´
+
 10 - Cadastrar o usuário
 
-	´php artisan dev:first-access´
+    ´php artisan dev:first-access´
 
 11 - Gerar o script
 
-	´npm run dev´
+    ´npm run dev´
 
 12 - Carregar servidor
 
-	´php artisan serve´
-	
+    ´php artisan serve´
+
 ## Utilizando o sistema:
 
 ### Cadastrando tarefas
@@ -92,15 +94,14 @@ node 12
 
 3 - Preencha os campos:
 
-	[Tarefa] = Nome da Tarefa
-	[Descrição] = Descrição detalhada da Tarefa
-	Clique em 
-	[Salvar]
+    [Tarefa] = Nome da Tarefa
+    [Descrição] = Descrição detalhada da Tarefa
+    Clique em
+    [Salvar]
 
 4 - Após cadastrar a tarefa, a mesma será exibida na página principal
 
 5 - Será enviado um e-mail para o usuário da tarefa criada.
-
 
 ### Editando tarefas
 
@@ -110,25 +111,20 @@ node 12
 
 3 - salve o cadastro, os dados da tarefa atualizada irão aparecer na tela principal.
 
-
-###  Concluindo tarefa
+### Concluindo tarefa
 
 1 - Na página principal, clique no botão [completar] da tarefa que deseja concluir
 
 2 - A tarefa concluída não será mais listada na página principal
 
-
-###  Exibindo tarefas concluídas
+### Exibindo tarefas concluídas
 
 1 - na página principal clique em [Tarefas Completadas]
 
 2 - será carregada uma página com as tarefas completadas.
-
 
 ### Excluíndo tarefas
 
 1 - Na página principal, clique no botão Excluir da tarefa que deseja apagar
 
 2 - A tarefa será excluída da tela principal.
-
-
