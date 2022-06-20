@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue';
+import {ref, onMounted,inject} from 'vue';
 import {useRouter} from 'vue-router';
 
 let form = ref({
@@ -8,28 +8,23 @@ let form = ref({
     user: '',
 })
 
+let cookies = inject("cookies");
+
 const router = useRouter();
 
 const createTodo = () => {
-    console.log(form.value);
     const formData = new FormData();
     formData.append('todo', form.value.todo);
     formData.append('description', form.value.description);
     formData.append('user_id', form.value.user);
 
-    // console.log(formData);
     axios.post('/api/todos', formData)
         .then((response) => {
-            form.value.todo = '';
-            form.value.description = '';
-            form.value.user = '';
-
             router.push('/');
         })
         .catch((error) => {
             console.log(error);
         });
-    // console.log(response.data);
 }
 
 
@@ -49,13 +44,6 @@ const createTodo = () => {
                             class="form-control"
                             id="todo"
                             v-model="form.todo"
-                        />
-                        <label for="user">User</label>
-                        <input
-                            type="number"
-                            class="form-control"
-                            id="user"
-                            v-model="form.user"
                         />
                         <label for="description">Descrição</label>
                         <input

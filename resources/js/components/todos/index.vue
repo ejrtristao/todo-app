@@ -9,9 +9,7 @@ let isAuthenticated = ref(false);
 let cookies = inject("cookies");
 
 onMounted(async () => {
-    getTodos();
     checkLogin();
-    console.log("mounted");
 });
 
 const checkLogin = () => {
@@ -19,17 +17,26 @@ const checkLogin = () => {
         isAuthenticated.value = false;
     } else {
         isAuthenticated.value = true;
+        getTodos();
     }
 };
 
 const getTodos = async () => {
-    const response = await axios.get("/api/todos");
+    const response = await axios.get("/api/todos", {
+        headers: {
+            Authorization: `Bearer ${cookies.get("token") }`
+        }
+    });
     todos.value = response.data;
 };
 
 const completedTodo = async (id) => {
     const response = await axios
-        .put("/api/todos/completed/" + id)
+        .put("/api/todos/completed/" + id, {
+        headers: {
+            Authorization: `Bearer ${cookies.get("token") }`
+        }
+    })
         .then((response) => {
             getTodos();
         })
@@ -108,21 +115,23 @@ const deleteTodo = async (id) => {
                             <td>{{ todo.todo }}</td>
                             <td>{{ todo.status }}</td>
                             <td>
-                                <div class="btn-group" role="group" v-show="todo.status === 'pending'">
+                                <div
+                                    class="btn-group"
+                                    role="group"
+                                    v-show="todo.status === 'pending'"
+                                >
                                     <button
                                         class="btn btn-primary"
                                         @click="editTodo(todo.id)"
                                     >
                                         Editar
                                     </button>
-                                            <button 
-
+                                    <button
                                         class="btn btn-success"
                                         @click="completedTodo(todo.id)"
                                     >
                                         Completar
                                     </button>
-                                    
 
                                     <button
                                         class="btn btn-danger"
