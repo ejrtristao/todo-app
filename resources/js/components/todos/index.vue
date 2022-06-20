@@ -17,6 +17,16 @@ const getTodos = async() => {
     todos.value = response.data;
 };
 
+const completedTodo = async(id) => {
+    const response = await axios.put('/api/todos/completed/' + id)
+    .then(response => {
+        getTodos();
+    })
+    .catch(error => {
+        console.log(error);
+    });    
+};
+
 const createTodo = () => {
     router.push('/todos/create');
 };
