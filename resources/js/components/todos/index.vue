@@ -68,14 +68,28 @@ const deleteTodo = async (id) => {
 </script>
 
 <template>
-    <div class="container bg-white">
+    <div class="container">
         <div class="row" v-if="isAuthenticated">
-            <div class="col-md-12">
-                <h1>Tarefas</h1>
-            </div>
-            <div class="col-md-12">
-                <button @click="createTodo">Nova Tarefa</button>
-                <button @click="logout">Logout</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-auto me-auto">
+                        <h1>Tarefas</h1>
+                        <button
+                            class="btn btn-sm btn-primary float-right"
+                            @click="createTodo"
+                        >
+                            Nova Tarefa
+                        </button>
+                    </div>
+                    <div class="col-auto">
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            @click="logout"
+                        >
+                            Sair
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
@@ -94,24 +108,29 @@ const deleteTodo = async (id) => {
                             <td>{{ todo.todo }}</td>
                             <td>{{ todo.status }}</td>
                             <td>
-                                <button
-                                    class="btn btn-primary"
-                                    @click="editTodo(todo.id)"
-                                >
-                                    Editar
-                                </button>
-                                <button
-                                    class="btn btn-danger"
-                                    @click="deleteTodo(todo.id)"
-                                >
-                                    Excluir
-                                </button>
-                                <button
-                                    class="btn btn-danger"
-                                    @click="completedTodo(todo.id)"
-                                >
-                                    Completar
-                                </button>
+                                <div class="btn-group" role="group" v-show="todo.status === 'pending'">
+                                    <button
+                                        class="btn btn-primary"
+                                        @click="editTodo(todo.id)"
+                                    >
+                                        Editar
+                                    </button>
+                                            <button 
+
+                                        class="btn btn-success"
+                                        @click="completedTodo(todo.id)"
+                                    >
+                                        Completar
+                                    </button>
+                                    
+
+                                    <button
+                                        class="btn btn-danger"
+                                        @click="deleteTodo(todo.id)"
+                                    >
+                                        Excluir
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
