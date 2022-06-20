@@ -8,6 +8,7 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Ramsey\Uuid\Type\Integer;
 
 class TodoController extends Controller
 {
@@ -18,7 +19,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return Todo::all();
+        return Todo::where('user_id', Auth::user()->id)->where('status', 'pending')->get();
     }
 
     /**
@@ -34,6 +35,12 @@ class TodoController extends Controller
         return response()->json($todo, 201);
     }
 
+
+    public function show(Todo $todo)
+    {
+        return response()->json($todo, 200);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -43,6 +50,7 @@ class TodoController extends Controller
      */
     public function update(StoreTodoRequest $request, Todo $todo)
     {
+
         $todo->update($request->all());
         return response()->json($todo, 200);
     }
@@ -57,5 +65,18 @@ class TodoController extends Controller
     {
         $todo->delete();
         return response()->json(null, 204);
+    }
+
+    public function completed(Todo $todo)
+    {
+        $todo = Todo::find($todo->id);
+        $todo->status = "completed";
+        $todo->save();
+        return response()->json($todo, 200);
+    }
+
+    public function listCompleted()
+    {
+        return Todo::where('user_id', Auth::user()->id)->where('status', 'completed')->get();
     }
 }
