@@ -35,6 +35,16 @@ const editTodo = (id) => {
     router.push('/todos/edit/'+id);
 };
 
+const deleteTodo = async(id) => {
+    const response = await axios.delete('/api/todos/'+id)
+    .then(response => {
+        getTodos();
+    })
+    .catch(error => {
+        console.log(error);
+    });    
+};
+
 </script>
 
 <template>
